@@ -67,7 +67,7 @@ export function Header({
     <header className="sticky top-0 z-40 w-full border-b border-[var(--color-border)] bg-[var(--color-surface)]/95 backdrop-blur-md shadow-[0_1px_2px_rgba(0,0,0,0.03)]">
       <div className="mx-auto flex h-14 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* Left Cluster: Brand Anchor + Hairline Divider + Integrated Primary Nav */}
-        <div className="flex items-center gap-4 xl:gap-5">
+        <div className="flex items-center gap-3 xl:gap-4 shrink-0 min-w-0">
           {/* Brand Logo Lockup */}
           <button
             onClick={() => onNavigate('briefing')}
@@ -76,7 +76,7 @@ export function Header({
             <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-amber-600 text-white shadow-xs font-bold shrink-0">
               <FileText className="h-4 w-4" />
             </div>
-            <div className="flex items-center gap-1.5">
+            <div className="flex items-center gap-1.5 shrink-0">
               <span className="text-sm font-bold tracking-tight text-[var(--color-text-primary)]">
                 SDR Resume
               </span>
@@ -90,14 +90,14 @@ export function Header({
           <div className="hidden lg:block h-4 w-px bg-[var(--color-border)] mx-1 shrink-0" />
 
           {/* Primary Navigation */}
-          <nav className="hidden lg:flex items-center gap-1">
+          <nav className="hidden lg:flex items-center gap-1 shrink-0">
             {primaryNavItems.map((item) => {
               const isActive = activeSection === item.id;
               return (
                 <button
                   key={item.id}
                   onClick={() => onNavigate(item.id)}
-                  className={`px-2.5 py-1.5 text-[13px] font-medium rounded-md transition-colors whitespace-nowrap shrink-0 ${
+                  className={`px-2.5 h-8 inline-flex items-center text-[13px] font-medium rounded-md transition-colors whitespace-nowrap shrink-0 ${
                     isActive
                       ? 'bg-[var(--color-panel-subtle)] text-[var(--color-text-primary)] font-semibold shadow-2xs border border-[var(--color-border)]'
                       : 'border border-transparent text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] hover:bg-[var(--color-panel-subtle)]/70'
@@ -112,14 +112,14 @@ export function Header({
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <button
-                  className={`flex items-center gap-1 px-2.5 py-1.5 text-[13px] font-medium rounded-md transition-colors whitespace-nowrap shrink-0 ${
+                  className={`inline-flex items-center gap-1 px-2.5 h-8 text-[13px] font-medium rounded-md transition-colors whitespace-nowrap shrink-0 ${
                     isSecondaryActive
                       ? 'bg-[var(--color-panel-subtle)] text-[var(--color-text-primary)] font-semibold shadow-2xs border border-[var(--color-border)]'
                       : 'border border-transparent text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] hover:bg-[var(--color-panel-subtle)]/70'
                   }`}
                 >
                   <span>More</span>
-                  <ChevronDown className="h-3 w-3 opacity-60 ml-0.5" />
+                  <ChevronDown className="h-3 w-3 opacity-60 ml-0.5 shrink-0" />
                 </button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="start" className="w-56 bg-[var(--color-surface)] border border-[var(--color-border)] p-1.5 shadow-lg">
@@ -156,15 +156,16 @@ export function Header({
         </div>
 
         {/* Right Cluster: Command Menu Trigger + Live Status + Theme Toggle */}
-        <div className="flex items-center gap-2 sm:gap-2.5">
-          {/* Quick Command Trigger Badge (⌘K) */}
+        <div className="flex items-center gap-2 sm:gap-2.5 shrink-0 ml-4 lg:ml-6">
+          {/* Quick Command Trigger Badge (⌘K) - single-line shrink-0 guarantee */}
           <button
             onClick={onOpenCommandMenu}
-            className="hidden md:flex items-center gap-2 rounded-md border border-[var(--color-border)] bg-[var(--color-panel-subtle)] px-2.5 py-1 text-xs text-[var(--color-text-secondary)] hover:border-slate-400 transition-colors shadow-2xs"
+            className="hidden md:inline-flex items-center gap-1.5 rounded-md border border-[var(--color-border)] bg-[var(--color-panel-subtle)] px-2.5 h-8 text-xs text-[var(--color-text-secondary)] hover:border-slate-400 hover:text-[var(--color-text-primary)] transition-colors shadow-2xs whitespace-nowrap shrink-0"
+            title="Quick Jump (⌘K)"
           >
-            <Search className="h-3.5 w-3.5 text-[var(--color-text-muted)]" />
-            <span className="font-medium">Quick Jump</span>
-            <kbd className="rounded border border-[var(--color-border)] bg-[var(--color-surface)] px-1.5 py-0.5 text-[10px] font-mono font-semibold text-[var(--color-text-muted)]">
+            <Search className="h-3.5 w-3.5 text-[var(--color-text-muted)] shrink-0" />
+            <span className="font-medium whitespace-nowrap">Quick</span>
+            <kbd className="rounded border border-[var(--color-border)] bg-[var(--color-surface)] px-1.5 py-0.5 text-[10px] font-mono font-semibold text-[var(--color-text-muted)] shrink-0">
               ⌘K
             </kbd>
           </button>
@@ -174,10 +175,10 @@ export function Header({
             variant="outline"
             size="sm"
             onClick={onOpenChaosModal}
-            className="h-8 text-xs font-semibold border-[var(--color-border)] bg-[var(--color-surface)] hover:bg-[var(--color-panel-subtle)] text-[var(--color-text-primary)] shadow-2xs hidden sm:flex items-center gap-1.5"
+            className="h-8 text-xs font-semibold border-[var(--color-border)] bg-[var(--color-surface)] hover:bg-[var(--color-panel-subtle)] text-[var(--color-text-primary)] shadow-2xs hidden sm:inline-flex items-center gap-1.5 whitespace-nowrap shrink-0"
           >
-            <SlidersHorizontal className="h-3.5 w-3.5 text-amber-600" />
-            <span>Chaos Test</span>
+            <SlidersHorizontal className="h-3.5 w-3.5 text-amber-600 shrink-0" />
+            <span className="whitespace-nowrap">Chaos Test</span>
           </Button>
 
           {/* Securiti AI Firewall Drawer Button */}
@@ -185,10 +186,10 @@ export function Header({
             variant="outline"
             size="sm"
             onClick={onOpenGovernanceDrawer}
-            className="h-8 text-xs font-semibold border-[var(--color-border)] bg-[var(--color-surface)] hover:bg-[var(--color-panel-subtle)] text-[var(--color-text-primary)] shadow-2xs hidden xl:flex items-center gap-1.5"
+            className="h-8 text-xs font-semibold border-[var(--color-border)] bg-[var(--color-surface)] hover:bg-[var(--color-panel-subtle)] text-[var(--color-text-primary)] shadow-2xs hidden xl:inline-flex items-center gap-1.5 whitespace-nowrap shrink-0"
           >
-            <Shield className="h-3.5 w-3.5 text-emerald-600" />
-            <span className="font-mono text-[11px]">Securiti Guard</span>
+            <Shield className="h-3.5 w-3.5 text-emerald-600 shrink-0" />
+            <span className="font-mono text-[11px] whitespace-nowrap">Securiti Guard</span>
           </Button>
 
           {/* Theme Toggle (Light/Dark Mode, defaults to Light) */}
@@ -196,7 +197,7 @@ export function Header({
             variant="outline"
             size="icon"
             onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-            className="h-8 w-8 rounded-md border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] hover:bg-[var(--color-panel-subtle)]"
+            className="h-8 w-8 rounded-md border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] hover:bg-[var(--color-panel-subtle)] shrink-0"
             aria-label="Toggle theme"
           >
             <Sun className="h-4 w-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0 text-amber-500" />
